@@ -17,9 +17,10 @@ def main():
     session = db_session.create_session()
     if not bool(session.query(User).all()):
         add_team(db_session)
-    add_work(db_session)
-
-    # app.run()
+    elif bool(session.query(User).all()) and not bool(session.query(Jobs).all()):
+        add_work(db_session)
+    else:
+        app.run()
 
 
 if __name__ == '__main__':
