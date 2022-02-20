@@ -10,8 +10,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = secret_key
 
 
-def main():
-    db_session.global_init(bd_path)
+def add_ecipazh():
     session = db_session.create_session()
     user = User()
     user.surname = "Scott"
@@ -58,9 +57,14 @@ def main():
     user.speciality = "doctor"
     user.address = "module_4"
     user.email = "John_John@mars.org"
-    user.set_password('i_Love_Mary_Morstan')
+    user.set_password('i_Love_Mary_Morstn')
     session.add(user)
     session.commit()
+
+
+def main():
+    db_session.global_init(bd_path)
+    add_ecipazh()
 
     # app.run()
 
