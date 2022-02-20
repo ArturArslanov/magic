@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from data.users import User
 from data.jobs import Jobs
 
@@ -60,5 +62,15 @@ def add_work(db_session):
     job.job = 'deployment of residential modules 1 and 2'
     job.work_size = 15
     job.collaborators = '2, 3'
+    user.jobs.append(job)
+    session.commit()
+
+    user = session.query(User).filter(User.id == 2).first()
+    job = Jobs()
+    job.job = 'deployment of residential modules 3 and 2'
+    job.work_size = 15
+    job.collaborators = '1, 3'
+    job.is_finished = True
+    job.end_date = datetime.today()
     user.jobs.append(job)
     session.commit()
