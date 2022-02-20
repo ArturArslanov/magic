@@ -1,4 +1,5 @@
 from data.users import User
+from data.jobs import Jobs
 
 
 def add_team(db_session):
@@ -39,7 +40,6 @@ def add_team(db_session):
     session.add(user)
     session.commit()
 
-    session = db_session.create_session()
     user = User()
     user.surname = "Watson"
     user.name = "John"
@@ -50,4 +50,15 @@ def add_team(db_session):
     user.email = "John_John@mars.org"
     user.set_password('i_Love_Mary_Morstn')
     session.add(user)
+    session.commit()
+
+
+def add_work(db_session):
+    session = db_session.create_session()
+    user = session.query(User).filter(User.id == 1).first()
+    job = Jobs()
+    job.job = 'deployment of residential modules 1 and 2'
+    job.work_size = 15
+    job.collaborators = '2, 3'
+    user.jobs.append(job)
     session.commit()

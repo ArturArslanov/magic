@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import Flask
 
-from add_team import add_team
+from add_team import add_team, add_work
 from data import db_session
 from config import secret_key, bd_path
 from data.jobs import Jobs
@@ -14,7 +14,10 @@ app.config['SECRET_KEY'] = secret_key
 
 def main():
     db_session.global_init(bd_path)
-    add_team(db_session)
+    session = db_session.create_session()
+    if not bool(session.query(User).all()):
+        add_team(db_session)
+    add_work(db_session)
 
     # app.run()
 
