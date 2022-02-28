@@ -56,7 +56,7 @@ def reqister():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/')
-    return render_template('register.html', title='Регистрация', form=form)
+    return render_template('register.html', title1='Регистрация', form=form,**params)
 
 
 if __name__ == '__main__':
