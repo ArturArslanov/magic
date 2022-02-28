@@ -18,3 +18,4 @@ class Jobs(SqlAlchemyBase):
     collaborators = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     is_finished = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
     user = orm.relation('User')
+
